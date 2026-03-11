@@ -1,0 +1,279 @@
+let score = 0
+
+const pages = {
+
+Ranking1: {
+text: `
+<h2>Das ist Dario</h2>
+
+<p>
+Er hat alle relevanten psychologischen, politischen und philosophischen Bücher gelesen.
+Er hat ein Abiturzeugnis von 1,0.
+Er hat seinen Masterabschluss ebenfalls mit 1,0 abgeschlossen.
+</p>
+`,
+options:[
+{label:"Weiter",next:"Ranking2"}
+]
+},
+
+Ranking2:{
+text:`
+<p>
+Zweifelsohne: Dario ist schlau.<br>
+Er ist schlauer als du!
+</p>
+`,
+options:[
+{label:"Weiter",next:"Ranking3"}
+]
+},
+
+Ranking3:{
+text:`
+<p>
+Er hat sich intensiv mit Fragen der Gerechtigkeit auseinandergesetzt.
+Er selbst sagt:
+</p>
+
+<p>
+„Gerechtigkeit ist das wichtigste Mittel, um den sozialen Frieden in der Gesellschaft zu wahren.“
+</p>
+
+<p>
+„Ein Staat braucht mehr Mut, um Gerechtigkeit zu wagen.“
+</p>
+`,
+options:[
+{label:"Weiter",next:"Ranking4"}
+]
+},
+
+Ranking4:{
+text:`
+<p>
+Um das umzusetzen, braucht es ein System.<br>
+Ein System, das gutes Verhalten belohnt.
+</p>
+
+<p>
+Dies ist die Idee für eine bessere Gesellschaft.
+</p>
+`,
+options:[
+{label:"Weiter",next:"Ranking5"}
+]
+},
+
+Ranking5:{
+text:`
+<p>
+Du bekommst Punkte, wenn du dich anpassen kannst,
+fleißig, motiviert und ehrgeizig bist.
+</p>
+
+<p>
+Du bekommst Punkte, wenn du der Gesellschaft dienst.
+</p>
+
+<p>
+Wir wollen für dich und die Gesellschaft das Beste.
+</p>
+`,
+options:[
+{label:"Weiter",next:"Ranking6"}
+]
+},
+
+Ranking6:{
+text:`
+<p>
+Menschen, die viele Punkte bekommen, stehen hoch im Ranking.
+</p>
+
+<p>
+Wer hoch im Ranking steht, hat Zugang zu bestimmten Privilegien.
+</p>
+
+<p>
+Er kann sich Wünsche erfüllen!
+</p>
+`,
+options:[
+{label:"Weiter",next:"Ranking7"}
+]
+},
+
+Ranking7:{
+text:`
+<p>Je nachdem wie viele Punkte du bekommst, wirst du eingestuft:</p>
+
+<ul>
+<li>Stufe 1: Privilegiert</li>
+<li>Stufe 2: Bessere Mitte</li>
+<li>Stufe 3: Schlechtere Mitte</li>
+<li>Stufe 4: Am Arsch</li>
+</ul>
+`,
+options:[
+{label:"Weiter",next:"Ranking8"}
+]
+},
+
+Ranking8:{
+text:`
+<p>Stufe 1: Privilegiert – bekommt viele Vergünstigungen</p>
+<p>Stufe 2: Bessere Mitte – bekommt einige Vergünstigungen</p>
+<p>Stufe 3: Schlechtere Mitte – hat Aussicht auf Vergünstigungen</p>
+<p>Stufe 4: Am Arsch – müssen wir nicht erklären</p>
+`,
+options:[
+{label:"Weiter",next:"Ranking9"}
+]
+},
+
+Ranking9:{
+text:`
+<p>
+Nun stellen wir dir ein paar Wiederholungsfragen,
+um zu überprüfen, ob du die letzten Seiten aufmerksam gelesen hast.
+</p>
+`,
+options:[
+{label:"Weiter",next:"Ranking10"}
+]
+},
+
+Ranking10:{
+text:`<h3>Frage 1</h3><p>Was sagt Dario zum Thema Gerechtigkeit?</p>`,
+options:[
+{label:"Ein Staat braucht mehr Mut, um Gerechtigkeit zu wagen",points:10,next:"Ranking11"},
+{label:"Gerechtigkeit liegt im Auge des Betrachters",points:0,next:"Ranking11"},
+{label:"Die Frage nach Gerechtigkeit ist eine endlose Debatte",points:0,next:"Ranking11"}
+]
+},
+
+Ranking11:{
+text:`<h3>Frage 2</h3><p>Welche Bücher hat Dario gelesen?</p>`,
+options:[
+{label:"Alle",points:0,next:"Ranking14"},
+{label:"Alle relevanten psychologischen, politischen und philosophischen Bücher",points:10,next:"Ranking14"},
+{label:"Alle relevanten chemischen, politischen und biologischen Bücher",points:0,next:"Ranking14"}
+]
+},
+
+Ranking14:{
+text:`<h3>Frage 3</h3><p>Was weißt du über Dario?</p>`,
+options:[
+{label:"Er ist schlauer als ich",points:10,next:"Ranking15"},
+{label:"Er ist schöner als ich",points:0,next:"Ranking15"},
+{label:"Er ist schöner und schlauer als ich",points:0,next:"Ranking15"}
+]
+},
+
+Ranking15:{
+text:`<h3>Frage 4</h3><p>Was will Dario?</p>`,
+options:[
+{label:"Schlechtes Verhalten bestrafen",points:0,next:"Ranking16"},
+{label:"Gutes Verhalten belohnen",points:10,next:"Ranking16"}
+]
+},
+
+Ranking16:{
+text:()=>{
+let message=""
+
+if(score<=20) message="Ist okay. Wir lieben dich trotzdem."
+if(score==30) message="Das ist gut!"
+if(score>=40) message="Das ist sehr gut! Du gefällst uns."
+
+return `<h2>Du hast ${score} Punkte</h2><p>${message}</p>`
+},
+options:[
+{label:"Weiter",next:"Befinden1"}
+]
+},
+
+Befinden1:{
+text:`<h2>Wie findest du eigentlich unsere Idee?</h2>`,
+options:[
+{label:"Weiter",next:"Befinden2"}
+]
+},
+
+Befinden2:{
+text:`<h3>Wie findest du unsere Idee?</h3>`,
+options:[
+{label:"Gut",next:"Befinden3gut"},
+{label:"Schlecht",next:"Befinden3schlecht"}
+]
+},
+
+Befinden3gut:{
+text:`<p>Was gefällt dir daran?</p>`,
+options:[
+{label:"Gerechtigkeit",points:20,next:"End"},
+{label:"Punkte sammeln",points:20,next:"End"},
+{label:"Einfach alles",points:0,next:"End"}
+]
+},
+
+Befinden3schlecht:{
+text:`<p>Warum findest du sie schlecht?</p>`,
+options:[
+{label:"Ich glaube nicht an Gerechtigkeit",points:40,next:"End"},
+{label:"Ich mag keine Erwartungen",points:40,next:"End"}
+]
+},
+
+End:{
+text:()=>{
+let img=""
+
+if(score<=20) img="images/privilegiert.png"
+else if(score<=40) img="images/bessere-mitte.png"
+else if(score<=60) img="images/schlechtere-mitte.png"
+else img="images/am-arsch.png"
+
+return `
+<h2>Gesamtpunktzahl: ${score}</h2>
+<img src="${img}">
+`
+},
+options:[]
+}
+
+}
+
+
+
+function showPage(id){
+
+const page=pages[id]
+
+const content=document.getElementById("content")
+
+let html=""
+
+html+=typeof page.text==="function"?page.text():page.text
+
+page.options.forEach(o=>{
+html+=`<button onclick="choose('${o.next}',${o.points||0})">${o.label}</button>`
+})
+
+content.innerHTML=html
+}
+
+
+
+function choose(next,points){
+
+score+=points
+
+showPage(next)
+
+}
+
+
+
+showPage("Ranking1")
